@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
 import NavBar from "./components/NavBar/index";
 import Wrapper from "./components/Wrapper/index";
 import Footer from "./components/Footer/index";
 import EmployeeCard from './components/EmployeeCard';
 
 function App() {
+
   return (
     <Wrapper>
       <NavBar />
