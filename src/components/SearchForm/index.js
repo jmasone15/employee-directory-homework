@@ -17,7 +17,7 @@ function SearchForm() {
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-        randomUser(amount)
+        randomUser(amount, filter)
             .then(res => {
                 let results = res.data.results
                 if (sort === "first") {
@@ -63,7 +63,7 @@ function SearchForm() {
                     <h4>Filter By:</h4>
                     <select class="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "filter")}>
                         <option selected value="" name="none">Select a Filter Method</option>
-                        <option value="Male" name="male">Male</option>
+                        <option value="male" name="male">Male</option>
                         <option value="female" name="female">Female</option>
                     </select>
                 </div>
