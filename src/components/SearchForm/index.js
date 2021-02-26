@@ -4,22 +4,34 @@ import randomUser from "../../utils/API";
 
 function SearchForm() {
 
-    const [search, setSearch] = useState({
-        amount: 1
-    });
-
+    const [amount, setAmount] = useState(1);
+    const [sort, setSort] = useState("");
+    const [filter, setFilter] = useState("");
     const [employees, setEmployees] = useState([]);
 
-    const handleInputChange = (e) => {
-        setSearch({ amount: e.target.value })
+    const handleInputChange = (e, info) => {
+        if (info === "amount") { setAmount(e.target.value); }
+        else if (info === "sort") { setSort(e.target.value); }
+        else if (info === "filter") { setFilter(e.target.value); }
     }
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-        randomUser(search.amount)
+        randomUser(amount)
             .then(res => {
-                setEmployees(res.data.results);
-                console.log(res.data.results);
+                let results = res.data.results
+                if (sort === "first") {
+                    let sortedResults = results.sort((a, b) => (a.name.first > b.name.first) ? 1 : ((b.name.first > a.name.first) ? -1 : 0));
+                    setEmployees(sortedResults);
+                }
+                else if (sort === "last") {
+                    let sortedResults = results.sort((a, b) => (a.name.last > b.name.last) ? 1 : ((b.name.last > a.name.last) ? -1 : 0));
+                    setEmployees(sortedResults);
+                }
+                else {
+                    setEmployees(results);
+                }
+
             })
             .catch(err => console.log(err));
     }
@@ -29,8 +41,9 @@ function SearchForm() {
             <form style={{ textAlign: "center", border: "3px double black" }}>
                 <div class="mb-3">
                     <h4>Number of Employees:</h4>
-                    <select class="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e)}>
-                        <option selected name="10" value={10}>10</option>
+                    <select class="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "amount")}>
+                        <option selected name="none" value={1}>Select a Number</option>
+                        <option name="10" value={10}>10</option>
                         <option name="20" value={20} >20</option>
                         <option name="50" value={50} >50</option>
                         <option name="100" value={100} >100</option>
@@ -39,18 +52,19 @@ function SearchForm() {
                 <br />
                 <div class="mb-3">
                     <h4>Sort By:</h4>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="first">First Name</option>
-                        <option value="last">Last Name</option>
-                        <option value="age">Age</option>
+                    <select class="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "sort")}>
+                        <option selected name="none" value="">Select a Sorting Method</option>
+                        <option value="first" name="first">First Name</option>
+                        <option value="last" name="last">Last Name</option>
                     </select>
                 </div>
                 <br />
                 <div class="mb-3">
                     <h4>Filter By:</h4>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="Male">Male</option>
-                        <option value="female">Female</option>
+                    <select class="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "filter")}>
+                        <option selected value="" name="none">Select a Filter Method</option>
+                        <option value="Male" name="male">Male</option>
+                        <option value="female" name="female">Female</option>
                     </select>
                 </div>
                 <br />
