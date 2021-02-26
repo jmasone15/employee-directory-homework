@@ -23,14 +23,17 @@ function SearchForm() {
                 if (sort === "first") {
                     let sortedResults = results.sort((a, b) => (a.name.first > b.name.first) ? 1 : ((b.name.first > a.name.first) ? -1 : 0));
                     setEmployees(sortedResults);
+                    document.getElementById("searchForm").style.display = "none";
                 }
                 else if (sort === "last") {
                     let sortedResults = results.sort((a, b) => (a.name.last > b.name.last) ? 1 : ((b.name.last > a.name.last) ? -1 : 0));
                     setEmployees(sortedResults);
+                    document.getElementById("searchForm").style.display = "none";
                 }
                 else {
                     setEmployees(results);
                     console.log(results);
+                    document.getElementById("searchForm").style.display = "none";
                 }
 
             })
@@ -39,7 +42,7 @@ function SearchForm() {
 
     return (
         <div className="container">
-            <form style={{ textAlign: "center", border: "3px double black" }}>
+            <form id="searchForm" style={{ textAlign: "center", border: "3px double black" }}>
                 <div className="mb-3">
                     <h4>Number of Employees:</h4>
                     <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "amount")}>

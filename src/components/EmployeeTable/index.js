@@ -18,6 +18,8 @@ function EmployeeTable(props) {
         location: ""
     });
 
+    const [show, setShow] = useState(false);
+
     const handleClick = (e, id) => {
         e.preventDefault();
         let s = props.results.filter(x => x.login.uuid === id);
@@ -34,12 +36,13 @@ function EmployeeTable(props) {
             phone: s[0].cell,
             location: s[0].location.state
         });
+        setShow(true)
     }
 
     return (
         <div className="container">
             <div className="container">
-                <EmployeeInfo employee={select} />
+                <EmployeeInfo employee={select} show={show} />
             </div>
             <br /><br />
             <table className="table table-dark table-hover">
