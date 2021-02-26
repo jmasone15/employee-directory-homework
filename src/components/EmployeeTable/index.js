@@ -1,18 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import randomUser from "../../utils/API";
 
-function EmployeeCard(props) {
-    const [employees, setEmployees] = useState([]);
+import React from 'react';
 
-
-    useEffect(() => {
-        randomUser(20)
-            .then(res => {
-                setEmployees(res.data.results);
-                console.log(res.data.results);
-            })
-            .catch(err => console.log(err));
-    }, []);
+function EmployeeTable(props) {
 
     return (
         <div className="container">
@@ -25,7 +14,7 @@ function EmployeeCard(props) {
                     <th scope="col">Number</th>
                 </thead>
                 <tbody>
-                    {employees.map(x => (
+                    {props.results.map(x => (
                         <tr>
                             <img src={x.picture.medium} alt={x.name.first}></img>
                             <td>{x.name.first}</td>
@@ -41,4 +30,4 @@ function EmployeeCard(props) {
     )
 }
 
-export default EmployeeCard;
+export default EmployeeTable;
