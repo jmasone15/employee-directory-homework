@@ -39,36 +39,71 @@ function EmployeeTable(props) {
         setShow(true)
     }
 
-    return (
-        <div className="container">
+    if (props.showTable === true) {
+        return (
             <div className="container">
-                <EmployeeInfo employee={select} show={show} />
-            </div>
-            <br /><br />
-            <table className="table table-dark table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Picture</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Number</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.results.map(x => (
-                        <tr key={x.login.uuid} id={x.login.uuid} onClick={(e) => handleClick(e, x.login.uuid)}>
-                            <img src={x.picture.medium} alt={x.name.first}></img>
-                            <td>{x.name.first}</td>
-                            <td>{x.name.last}</td>
-                            <td>{x.email}</td>
-                            <td>{x.cell}</td>
+                <div className="container">
+                    <EmployeeInfo employee={select} show={show} />
+                </div>
+                <br /><br />
+                <h2>Click on an employee to see more info!</h2>
+                <br />
+                <table className="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Picture</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Number</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    )
+                    </thead>
+                    <tbody>
+                        {props.results.map(x => (
+                            <tr key={x.login.uuid} id={x.login.uuid} onClick={(e) => handleClick(e, x.login.uuid)}>
+                                <img src={x.picture.medium} alt={x.name.first}></img>
+                                <td>{x.name.first}</td>
+                                <td>{x.name.last}</td>
+                                <td>{x.email}</td>
+                                <td>{x.cell}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        )
+    } else {
+        return (
+            <div className="container" style={{ display: "none" }}>
+                <div className="container">
+                    <EmployeeInfo employee={select} show={show} />
+                </div>
+                <br /><br />
+                <table className="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Picture</th>
+                            <th scope="col">First</th>
+                            <th scope="col">Last</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.results.map(x => (
+                            <tr key={x.login.uuid} id={x.login.uuid} onClick={(e) => handleClick(e, x.login.uuid)}>
+                                <img src={x.picture.medium} alt={x.name.first}></img>
+                                <td>{x.name.first}</td>
+                                <td>{x.name.last}</td>
+                                <td>{x.email}</td>
+                                <td>{x.cell}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
 }
 
 export default EmployeeTable;

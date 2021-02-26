@@ -8,6 +8,7 @@ function SearchForm() {
     const [sort, setSort] = useState("");
     const [filter, setFilter] = useState("");
     const [employees, setEmployees] = useState([]);
+    const [showTable, setShowTable] = useState(false);
 
     const handleInputChange = (e, info) => {
         if (info === "amount") { setAmount(e.target.value); }
@@ -24,16 +25,19 @@ function SearchForm() {
                     let sortedResults = results.sort((a, b) => (a.name.first > b.name.first) ? 1 : ((b.name.first > a.name.first) ? -1 : 0));
                     setEmployees(sortedResults);
                     document.getElementById("searchForm").style.display = "none";
+                    setShowTable(true);
                 }
                 else if (sort === "last") {
                     let sortedResults = results.sort((a, b) => (a.name.last > b.name.last) ? 1 : ((b.name.last > a.name.last) ? -1 : 0));
                     setEmployees(sortedResults);
                     document.getElementById("searchForm").style.display = "none";
+                    setShowTable(true);
                 }
                 else {
                     setEmployees(results);
                     console.log(results);
                     document.getElementById("searchForm").style.display = "none";
+                    setShowTable(true);
                 }
 
             })
@@ -41,41 +45,44 @@ function SearchForm() {
     }
 
     return (
-        <div className="container">
-            <form id="searchForm" style={{ textAlign: "center", border: "3px double black" }}>
-                <div className="mb-3">
-                    <h4>Number of Employees:</h4>
-                    <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "amount")}>
-                        <option defaultValue name="none" value={1}>Select a Number</option>
-                        <option name="10" value={10}>10</option>
-                        <option name="20" value={20} >20</option>
-                        <option name="50" value={50} >50</option>
-                        <option name="100" value={100} >100</option>
-                    </select>
-                </div>
+        <div className="container" style={{ textAlign: "center" }}>
+            <div id="searchForm">
+                <h2>Fill out the form to view employees!</h2>
                 <br />
-                <div className="mb-3">
-                    <h4>Sort By:</h4>
-                    <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "sort")}>
-                        <option defaultValue name="none" value="">Select a Sorting Method</option>
-                        <option value="first" name="first">First Name</option>
-                        <option value="last" name="last">Last Name</option>
-                    </select>
-                </div>
-                <br />
-                <div className="mb-3">
-                    <h4>Filter By:</h4>
-                    <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "filter")}>
-                        <option defaultValue value="" name="none">Select a Filter Method</option>
-                        <option value="male" name="male">Male</option>
-                        <option value="female" name="female">Female</option>
-                    </select>
-                </div>
-                <br />
-                <button type="submit" className="btn btn-dark" onClick={(e) => handleFormSubmit(e)}>Submit</button>
-            </form>
-            <br /><br />
-            <EmployeeTable results={employees} />
+                <form style={{ textAlign: "center", border: "3px double black", padding: "10px" }}>
+                    <div className="mb-3">
+                        <h4>Number of Employees:</h4>
+                        <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "amount")}>
+                            <option defaultValue name="none" value={1}>Select a Number</option>
+                            <option name="10" value={10}>10</option>
+                            <option name="20" value={20} >20</option>
+                            <option name="50" value={50} >50</option>
+                            <option name="100" value={100} >100</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div className="mb-3">
+                        <h4>Sort By:</h4>
+                        <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "sort")}>
+                            <option defaultValue name="none" value="">Select a Sorting Method</option>
+                            <option value="first" name="first">First Name</option>
+                            <option value="last" name="last">Last Name</option>
+                        </select>
+                    </div>
+                    <br />
+                    <div className="mb-3">
+                        <h4>Filter By:</h4>
+                        <select className="form-select" aria-label="Default select example" onChange={(e) => handleInputChange(e, "filter")}>
+                            <option defaultValue value="" name="none">Select a Filter Method</option>
+                            <option value="male" name="male">Male</option>
+                            <option value="female" name="female">Female</option>
+                        </select>
+                    </div>
+                    <br />
+                    <button type="submit" className="btn btn-dark" onClick={(e) => handleFormSubmit(e)}>Submit</button>
+                </form>
+            </div>
+            <EmployeeTable showTable={showTable} results={employees} />
         </div>
     )
 }
