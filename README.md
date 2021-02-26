@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Employee Directory
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -39,32 +39,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## About the Project
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project allows the user to view all of their employees information rapidly and effectively.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+With the use of React Components, the user can search for a certain number of randomly generated employees and see each employees basic information.
 
-### Code Splitting
+The user can then select any particular employee to see more sensitive data about that particular employee. The random generated employees come from the [Random User API](https://randomuser.me/) which is a free, open-source API that anyone can use.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The user can also sort their search by name, or filer their search by gender, if they choose to do so.
 
-### Analyzing the Bundle Size
+  ## Questions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    If you have any questions about the repo, open an issue or contact me directly at jordanmasone1@gmail.com. You can find more of my work at [jmasone15](https://github.com/jmasone15).
